@@ -1,0 +1,17 @@
+﻿<Window x:Class="MoveIT.Transfer.Task.Application.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoveIT.Transfer.Task.Application"
+        mc:Ignorable="d"
+        Title="Home" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button Content="Select directory to monitor" Margin="24,102,546,286" Click="SelectDirectory"/>
+        <TextBox TextWrapping="Wrap" Text="Please select a directory" Margin="24,53,546,337" Name="SelectedDirectoryTextBox"/>
+        <Button Content="Start monitor" Margin="329,373,248,10" Click="StartMonitor" Name="StartMonitorButton"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errorMessage" VerticalAlignment="Top" Width="247" Margin="24,25,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
+        <Button Content="Stop monitor" Margin="567,373,10,10" Click="StopMonitor" Name="StopMonitorButton"/>
+    </Grid>
+</Window>
