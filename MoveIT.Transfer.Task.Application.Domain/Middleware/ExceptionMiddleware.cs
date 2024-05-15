@@ -35,13 +35,13 @@ namespace MoveIT.Transfer.Task.Application.Domain.Middleware
 			}
 			else
 			{
-				var exceptionResponse = CreateResponse(context, exception);
+				var exceptionResponse = CreateResponse(exception);
 				context.Response.StatusCode = (int)exceptionResponse.StatusCode;
 				await context.Response.WriteAsJsonAsync(exceptionResponse);
 			}
 		}
 
-		private static ExceptionResponse CreateResponse(HttpContext context, Exception exception)
+		private static ExceptionResponse CreateResponse(Exception exception)
 		{
 			ExceptionResponse response;
 			switch (exception)
