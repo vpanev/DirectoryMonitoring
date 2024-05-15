@@ -3,7 +3,6 @@ using MoveIT.Transfer.Task.Application.Models;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.Net.Http;
-using System.Web;
 using System.Windows;
 using System.Windows.Input;
 using Cursors = System.Windows.Input.Cursors;
@@ -21,7 +20,7 @@ namespace MoveIT.Transfer.Task.Application
 			InitializeComponent();
 		}
 
-		private async void button1_Click(object sender, RoutedEventArgs e)
+		private async void Login(object sender, RoutedEventArgs e)
 		{
 			if (textBoxUsername.Text.Length == 0)
 			{
@@ -36,7 +35,7 @@ namespace MoveIT.Transfer.Task.Application
 			}
 
 			Mouse.OverrideCursor = Cursors.Wait;
-			button1.IsEnabled = false;
+			LoginButton.IsEnabled = false;
 			using var client = new HttpClient();
 			try
 			{
@@ -44,11 +43,6 @@ namespace MoveIT.Transfer.Task.Application
 
 				var key = ConfigurationManager.AppSettings["ENCODE_SALT_KEY"];
 				var encryptedPassword = await EncryptorHelper.EncryptStringAsync(key!, passwordBox1.Password);
-
-				//var query = HttpUtility.ParseQueryString(url.Query);
-				//query["username"] = textBoxUsername.Text;
-				//query["password"] = encryptedPassword;
-				//url.Query = query.ToString();
 
 				var request = new GetTokenRequest()
 				{
@@ -68,14 +62,14 @@ namespace MoveIT.Transfer.Task.Application
 				Close();
 
 				Mouse.OverrideCursor = null;
-				button1.IsEnabled = true;
+				LoginButton.IsEnabled = true;
 			}
 			catch (Exception)
 			{
 				MessageBox.Show("Login failed");
 				errormessage.Text = "Invalid credentials";
 				Mouse.OverrideCursor = null;
-				button1.IsEnabled = true;
+				LoginButton.IsEnabled = true;
 			}
 		}
 	}
